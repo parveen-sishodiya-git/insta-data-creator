@@ -53,7 +53,7 @@
                     <input type="text" class="form-control" id="otherdetails" placeholder="Enter retail price"
                         ng-model="product.otherdetails">
                 </div>
-                <button type="submit" class="btn btn-primary" ng-click="saveProduct()">Add Product</button>
+                <button type="submit" class="btn btn-success" ng-click="saveProduct()">Add Product</button>
             </div>
             <div id="productDetails" class="my-3">
 
@@ -71,7 +71,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="product in productDetailsToShow">
+                        <tr ng-repeat="product in productDetailsToShow track by $index">
                             <td>{{$index + 1}}</td>
                             <td>{{product.pname}}</td>
                             <td>{{product.bname}}</td>
@@ -86,8 +86,22 @@
                 
             </div>
             <hr>
-            <button class="btn btn-danger" ng-click="extractProductJSON()">Extract JSON</button>
-            <div id="productJson">
+            <div class="alert alert-danger" role="alert">
+                Developer Zone Below
+              </div>
+            <div class="row mb-2">
+                <div class="col-4">
+                    <input type="text" class="form-control" id="rprice" placeholder="give product json"
+                    ng-model="externalJSON">
+                </div>
+                <div class="col-2">
+                    <button class="btn btn-danger" ng-click="giveProductJSON()">Give JSON</button>
+                </div>
+                <div class="col-4">
+                    <button class="btn btn-danger" ng-click="extractProductJSON()">Extract JSON</button>
+                </div>
+            </div>
+           <div id="productJson">
 
             </div>
             

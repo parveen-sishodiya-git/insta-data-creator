@@ -1,3 +1,4 @@
+//https://parveen-sishodiya-git.github.io/insta-data-creator/
 console.log("I am shopper data");
 
 const app = angular.module("mainApp", []);
@@ -34,10 +35,33 @@ app.controller("productAddController", function ($scope) {
 
     $scope.extractProductJSON = ()=>{
         if(localStorage.getItem("productDetails")){
-            document.getElementById("productJson").innerText = JSON.stringify(localStorage.getItem("productDetails"));
+            document.getElementById("productJson").innerText = localStorage.getItem("productDetails");
         }else{
             document.getElementById("productJson").innerText = "No Product saved yet";
         }   
+    }
+
+    $scope.giveProductJSON = ()=>{
+        if(localStorage.getItem("productDetails")){
+            let newProducts = JSON.parse($scope.externalJSON);
+            //let newProducts = JSON.parse(localStorage.getItem("productDetails"));
+            let oldProducts = JSON.parse(localStorage.getItem("productDetails"));
+            console.log("new")
+            console.log(newProducts);
+            console.log(typeof(newProducts));
+            console.log(newProducts[0]);
+            console.log("old")
+            console.log(oldProducts);
+            console.log(typeof(oldProducts));
+            console.log(oldProducts[0]);
+            let allProducts = newProducts.concat(oldProducts);
+            localStorage.setItem("productDetails",JSON.stringify(allProducts));
+
+        }else{
+            localStorage.setItem("productDetails",$scope.externalJSON);
+        }   
+        getProductDetails();
+        $scope.externalJSON = "";
     }
 
 });
